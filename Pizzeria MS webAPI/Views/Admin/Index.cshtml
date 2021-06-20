@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Pizzeria_MS_webAPI.Models.Admin>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+    .alertify-notifier .ajs-message.ajs-success{
+        background-color:crimson;
+    }
+
+</style>
+
+<h2>Index</h2>
+
+<p>
+    <a href="@Url.Action("Create","Admin")" class="btn btn-danger"><i class="fa fa-plus">Create New</i></a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contact)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit","Admin", new { id =item.id})" class="btn btn-success"><i class=" fa fa-pencil">Edit</i></a>
+            <a onclick="Delete(@item.id)" class="btn btn-danger"><i class="fa fa-trash">Delete</i></a>
+        </td>
+    </tr>
+}
+
+</table>
+
+@section scripts{ 
+
+    <script>
+        $(function () {
+            var SuccessMessage = 'TempData[SuccessMessage]'
+            if (SuccessMessage != "")
+                alertify.success(SuccessMessage);
+        })
+        function Delete(id) {
+            alertify.confirm('Web API System', 'Are you sure You want to delete this record ?', function () {
+                window.location.href = '@Url.Action("Delete","Admin")/' + id;
+            }, null)
+        }
+
+    </script>
+
+}

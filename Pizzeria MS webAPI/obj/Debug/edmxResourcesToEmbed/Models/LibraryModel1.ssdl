@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PizzeriaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="contact" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contactno" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="PizzaOrder">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="PizzaName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UnitPrice" Type="money" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="Price" Type="money" />
+  </EntityType>
+  <Association Name="FK_Customer_PizzaOrder">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="PizzaOrder" Type="Self.PizzaOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="PizzaOrder">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PizzeriaModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PizzaOrder" EntityType="Self.PizzaOrder" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Customer_PizzaOrder" Association="Self.FK_Customer_PizzaOrder">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="PizzaOrder" EntitySet="PizzaOrder" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
