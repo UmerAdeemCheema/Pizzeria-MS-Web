@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Pizzeria_MS_webAPI.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+
+    .alertify-notifier .ajs-message.ajs-success {
+        background-color: blueviolet;
+    }
+</style>
+<h3>Customer Data</h3>
+<br />
+<p>
+    <a href="@Url.Action("Create","Customer")" class="btn btn-danger"><i class="fa fa-plus">&nbsp Create New &nbsp</i></a>
+</p>
+<br />
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contactno)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustomerID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Contactno)
+    </td>
+    <td>
+        <a href="@Url.Action("Edit","Customer", new { id =item.CustomerID})" class="btn btn-success"><i class=" fa fa-pencil">&nbsp Edit &nbsp</i></a>
+        <a onclick="Delete(@item.CustomerID)" class="btn btn-danger"><i class="fa fa-trash">&nbsp Delete &nbsp</i></a>
+    </td>
+</tr>
+    }
+
+</table>
+
+@section scripts{
+
+    <script>
+        $(function () {
+            var SuccessMessage = 'TempData[SuccessMessage]'
+            if (SuccessMessage != "")
+                alertify.success(SuccessMessage);
+        })
+        function Delete(id) {
+            alertify.confirm('Web API System', 'Are you sure You want to delete this record ?', function () {
+                window.location.href = '@Url.Action("Delete","Customer")/' + id;
+            }, null)
+        }
+
+    </script>
+
+}

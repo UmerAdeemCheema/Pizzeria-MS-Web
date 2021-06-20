@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
 
-<h3>Create</h3>
+<h3>Create New Admin</h3>
 
 <style>
     .field-validation-error{
@@ -21,9 +21,8 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+    <br />
     <div class="form-horizontal">
-        <h4>Admin</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -33,8 +32,8 @@
                 @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
+            <br />
             @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
@@ -43,6 +42,7 @@
         </div>
 
         <div class="form-group">
+            <br />
             @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
@@ -51,6 +51,7 @@
         </div>
 
         <div class="form-group">
+            <br />
             @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
@@ -59,6 +60,7 @@
         </div>
 
         <div class="form-group">
+            <br />
             @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
@@ -67,6 +69,7 @@
         </div>
 
         <div class="form-group">
+            <br />
             @Html.LabelFor(model => model.contact, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.contact, new { htmlAttributes = new { @class = "form-control" } })
@@ -74,12 +77,16 @@
             </div>
         </div>
 
+        <br />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-successs" />
+                <input type="submit" value="Save" class="btn btn-success" />
                 <input type="reset" value="Clear" class="btn btn-danger" />
             </div>
         </div>
+        <br />
+        <br />
+        <br />
     </div>
 }
 

@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="">
 <!--<![endif]-->
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,13 +44,13 @@
 
     <!-- Left Panel -->
 
-    <aside id="left-panel" class="left-panel" style="background-color:darkgreen">
-        <nav class="navbar navbar-expand-sm navbar-default" style="background-color:white">
+    <aside id="left-panel" class="left-panel" style="background-color: #212529">
+        <nav class="navbar navbar-expand-sm navbar-default" style="background-color: #212529">
             <br />
             <br />
-            <h3>UI elements</h3><!-- /.menu-title -->
+            <h3 style="color:white">PIZZERIA MANAGEMENT SYSTEM</h3><!-- /.menu-title -->
             <hr />
-            <h5>Components</h5>
+            <h5 style="color:white">Components</h5>
             <br />
             <table>
                 <tr>
@@ -57,7 +58,11 @@
                     <td>
                         <a href="@Url.Action("Index", "Home")" class="btn btn-default"> <b> Home </b> </a>
                         <br />
-                        <a href="@Url.Action("Index","Novel")" class="btn btn-default"><b> Novel </b> </a>
+                        <a href="@Url.Action("Index","Admin")" class="btn btn-default"><b> Admin Record </b> </a>
+                        <br />
+                        <a href="@Url.Action("Index","Customer")" class="btn btn-default"><b> Customer Record </b> </a>
+                        <br />
+                        <a href="@Url.Action("Index","PizzaOrder")" class="btn btn-default"><b> Order Record </b> </a>
                         <br />
                     </td>
 

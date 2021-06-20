@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Pizzeria_MS_webAPI.Models.PizzaOrder>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<style>
+
+    .alertify-notifier .ajs-message.ajs-success {
+        background-color: darkorange;
+    }
+</style>
+<h3>Order Data</h3>
+<br />
+<p>
+    <a href="@Url.Action("Create","PizzaOrder")" class="btn btn-danger"><i class="fa fa-plus">&nbsp Create New &nbsp</i></a>
+</p>
+<br />
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PizzaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PizzaName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit","PizzaOrder", new { id =item.CustomerID})" class="btn btn-success"><i class=" fa fa-pencil">&nbsp Edit &nbsp</i></a>
+                    <a onclick="Delete(@item.OrderID)" class="btn btn-danger"><i class="fa fa-trash">&nbsp Delete &nbsp</i></a>
+                </td>
+            </tr>
+        }
+
+</table>
+
+@section scripts{
+
+    <script>
+        $(function () {
+            var SuccessMessage = 'TempData[SuccessMessage]'
+            if (SuccessMessage != "")
+                alertify.success(SuccessMessage);
+        })
+        function Delete(id) {
+            alertify.confirm('Web API System', 'Are you sure You want to delete this record ?', function () {
+                window.location.href = '@Url.Action("Delete","PizzaOrder")/' + id;
+            }, null)
+        }
+
+    </script>
+
+}
