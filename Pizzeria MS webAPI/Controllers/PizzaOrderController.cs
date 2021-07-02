@@ -7,13 +7,45 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Pizzeria_MS_webAPI.Models;
+using Pizzeria_MS_webAPI.Models.Interface;
+using Pizzeria_MS_webAPI.Models.Implementation;
+using Pizzeria_MS_webAPI.Models.Implementation.Decorator;
+using Pizzeria_MS_webAPI.Models.Implementation.Decorator.Base;
 
 namespace Pizzeria_MS_webAPI.Controllers
 {
     public class PizzaOrderController : Controller
     {
+        IPizza pizza = null;
         private PizzeriaEntities db = new PizzeriaEntities();
-
+        public void createthincrust()
+        {
+            pizza = ThinCrust.create(pizza);
+        }
+        public void createstuffedcrust()
+        {
+            pizza = StuffedCrust.create(pizza);
+        }
+        public void createExtraToppings()
+        {
+            pizza = Extra_Toppings.create(pizza);
+        }
+        public void createExtracheese()
+        {
+            pizza = Extra_Cheese.create(pizza);
+        }
+        public int getpizzaprice()
+        {
+            if (pizza == null)
+            {
+                pizza = new PizzaDecorator(pizza);
+                return pizza.getPrice();
+            }
+            else
+            {
+                return pizza.getPrice();
+            }
+        }
         // GET: PizzaOrder
         public ActionResult Index()
         {
@@ -122,6 +154,8 @@ namespace Pizzeria_MS_webAPI.Controllers
             TempData["SuccessMessage"] = "Record Deleted Successfully";
             return RedirectToAction("Index");
         }
+
+        
 
         protected override void Dispose(bool disposing)
         {

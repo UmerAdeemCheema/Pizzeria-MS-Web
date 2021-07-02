@@ -176,6 +176,12 @@
     <Compile Include="Models\Customer.cs">
       <DependentUpon>LibraryModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Implementation\Decorator\Base\PizzaDecorator.cs" />
+    <Compile Include="Models\Implementation\Decorator\Extra Cheese.cs" />
+    <Compile Include="Models\Implementation\Decorator\Extra Toppings.cs" />
+    <Compile Include="Models\Implementation\StuffedCrust.cs" />
+    <Compile Include="Models\Implementation\ThinCrust.cs" />
+    <Compile Include="Models\Interface\IPizza.cs" />
     <Compile Include="Models\LibraryModel1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
